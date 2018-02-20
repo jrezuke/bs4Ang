@@ -1,0 +1,11 @@
+@import 'variables';
+@import '../node_modules/font-awesome/scss/font-awesome';
+@import '~bootstrap/scss/bootstrap.scss';
+
+html{
+  /* border-box box model allows us to add padding and border to our elements without increasing their size */
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
