@@ -1,6 +1,7 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Subject } from 'rxjs/Subject';
+import { SecurityService } from '../shared/security.service';
 import { User } from '../shared/user';
 
 @Component({
@@ -10,18 +11,24 @@ import { User } from '../shared/user';
 })
 
 export class LoginModalComponent implements OnInit {
-  closeBtnName: string = "close";
-  user: User;
-  loginForm = new FormGroup({
-    userName: new FormControl(),
-    passWord: new FormControl()
+  title: string;
+  closeBtnName: string;
+  name: string;
+  password: string;
+  public onClose: Subject<string>;
 
-  });
-
-  constructor(public bsModalRef: BsModalRef) { }
+  constructor(private _securityService: SecurityService, public bsModalRef: BsModalRef) { }
 
   ngOnInit() {
 
+  }
+
+  onSubmit(){
+    //this.onClose.next(this.name);
+    this._securityService.user.password = this.password;
+    this._securityService.user.username = this.name;
+    console.log("onSubmit", this.name, this.password );
+    this.bsModalRef.hide();
   }
 
 }
