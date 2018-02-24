@@ -14,11 +14,10 @@ import { User } from './shared/user';
 
 export class AppComponent implements OnInit {
   bsModalRef: BsModalRef;
-  subscriptions: Subscription[] = [];
   isAuthenticated = false;
   user: User;
 
-  constructor(private _securityService: SecurityService,
+  constructor(public _securityService: SecurityService,
     private _modalService: BsModalService,
     private _changeDetection: ChangeDetectorRef) {
   }
@@ -32,7 +31,7 @@ export class AppComponent implements OnInit {
   }
 
   onLogin(): void {
-    this._securityService.setAuthenticated(true);
+
     this.user = new User();
     this.user.username = "jojo";
     const initialState = {
@@ -50,6 +49,7 @@ export class AppComponent implements OnInit {
   }
 
   onLogout(): void {
+    console.log("logout");
     this._securityService.setAuthenticated(false);
   }
 

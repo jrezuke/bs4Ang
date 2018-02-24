@@ -33,10 +33,18 @@
         </li>
       </ul>
 
-        <div (click)="onLogout()" *ngIf="isAuthenticated"><i class="fa fa-user fa-2x" aria-hidden="true"></i></div>
+        <div *ngIf="isAuthenticated" class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-user fa-2x" aria-hidden="true"></i> {{_securityService.user.username}}
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a (click)="onLogout()" class="dropdown-item" href="#">Logout</a>
+              </div>
+        </div>
 
         <button (click)="onLogin()" *ngIf="! isAuthenticated" class="btn btn-outline-success my-2 my-sm-0" >Login</button>
-      
+
     </div>
   </nav>
 </div>
